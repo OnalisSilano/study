@@ -1,0 +1,4 @@
+include ':app:curry'
+include ':app:book'
+include ':app'
+include ':DiceRoller2'
