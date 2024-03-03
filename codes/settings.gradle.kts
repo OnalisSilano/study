@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Lemonade2"
+include(":artSpace")
 include(":app")

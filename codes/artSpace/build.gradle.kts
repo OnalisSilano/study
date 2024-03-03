@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lemonade2"
+    namespace = "com.example.artspace"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.lemonade2"
+        applicationId = "com.example.artspace"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
