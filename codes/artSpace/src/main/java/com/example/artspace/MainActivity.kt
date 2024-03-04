@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -59,29 +60,29 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun ArtSpaceScreen(modifier: Modifier = Modifier) {
-    var artNumber by remember {
+private fun ArtSpaceScreen() {
+    var artNumber by rememberSaveable {
         mutableIntStateOf(1)
     }
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Images(
-            modifier,
+            Modifier,
             artNumber,
         )
         Descriptions(
-            modifier,
+            Modifier,
             artNumber,
         )
         Buttons(
-            modifier,
-            onClickPrevious = { previousNumber(artNumber = artNumber) },
-            onClickNext = { nextNumber(artNumber = artNumber) },
+            Modifier,
+            onClickPrevious = { artNumber = previousNumber(artNumber) },
+            onClickNext = { artNumber = nextNumber(artNumber) },
         )
     }
 }
@@ -156,8 +157,8 @@ private fun Descriptions(
 @Composable
 private fun Buttons(
     modifier: Modifier = Modifier,
-    onClickPrevious: (Int) -> Unit,
-    onClickNext: (Int) -> Unit,
+    onClickPrevious: () -> Unit,
+    onClickNext: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -166,7 +167,7 @@ private fun Buttons(
     ) {
         Button(
             shape = MaterialTheme.shapes.small,
-            onClick = { onClickPrevious },
+            onClick = onClickPrevious,
             modifier = modifier.padding(
                 horizontal = 16.dp
             ),
@@ -176,7 +177,7 @@ private fun Buttons(
         Spacer(modifier = modifier.size(32.dp))
         Button(
             shape = MaterialTheme.shapes.small,
-            onClick = { onClickNext },
+            onClick = onClickNext,
             modifier = modifier.padding(
                 horizontal = 16.dp
             ),
