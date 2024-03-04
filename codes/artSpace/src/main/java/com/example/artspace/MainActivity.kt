@@ -129,7 +129,7 @@ private fun Descriptions(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 60.dp)
+            .padding(horizontal = 60.dp, vertical = 24.dp)
             .background(Color.Gray, RoundedCornerShape(8.dp)),
     ) {
         Text(
@@ -164,6 +164,7 @@ private fun Buttons(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentWidth(Alignment.CenterHorizontally)
+            .padding(bottom = 24.dp)
     ) {
         Button(
             shape = MaterialTheme.shapes.small,
